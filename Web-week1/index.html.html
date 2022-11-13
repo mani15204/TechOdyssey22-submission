@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> Tasks </title>
+    </head>
+
+    <body>
+        <h1> Todo List </h1>
+        <fieldset>
+            <legend> Todo list: </legend>
+
+            
+
+            <div class = "input_div">
+                <input class = "input_title" id = "title" type = "text" name = "input_title" placeholder = "Title">
+                <input class = "input_description" id = "description" type = "text" name = "input_description" placeholder = "Description">
+                <button class = "addButton" onclick="addList()"> ADD </button>
+            </div>
+
+            <div>
+                <br><br>
+                <style>
+                    .heading{
+                        border: none;
+                        font-size: 15px;
+                        background-color: white;
+                        font-weight: bold;
+                        text-align: center;
+                    }
+
+                    .Element{
+                        border: none;
+                        text-align: center;
+                        font-size: 15px;
+                        background-color: white;
+                    }
+                    
+                    .ElementButton{
+                        position: absolute;
+                        left:510px;
+                    }
+                </style>
+                <input class = "heading" value = "Task name" disabled = true; >
+                <input class = "heading" id = "taskdescription" value = "Task description" disabled = true;>
+                <input class = "heading" id = "action" value = "Action" disabled = true;>
+
+            </div>
+
+            <div class = "container">
+                <div class = "item">
+                </div>
+            </div>
+        </fieldset>
+
+        <script type = "text/javascript">
+            function addList(){
+                const addButton = document.querySelector('.addButton');
+                const container = document.querySelector('.container');
+                var inputTitle = document.getElementById('title');
+                var inputDescription = document.getElementById('description');
+
+                var itemBox = document.createElement('div');
+                itemBox.classList.add('item');
+
+                var element1 = document.createElement('input');
+                element1.value = inputTitle.value;
+                element1.disabled = "true";
+                element1.classList.add("Element");
+                itemBox.appendChild(element1);
+
+                var element2 = document.createElement('input');
+                element2.value = inputDescription.value;
+                element2.classList.add("Element");
+                element2.disabled = true;
+                itemBox.append(element2);
+
+                var element3 = document.createElement('button');
+                element3.innerHTML = "Delete";
+                element3.classList.add("ElementButton");
+                itemBox.append(element3);
+
+                var br = document.createElement('br');
+                itemBox.append(br);
+
+                container.append(itemBox);
+                element3.addEventListener('click', function(){
+                    container.removeChild(itemBox);
+                });
+
+                inputTitle.value = "";
+                inputDescription.value = "";
+                /*
+                function delNode(e1){
+                    var parent = e1.parentNode;
+                    var index = Array.prototype.indexOf.call(parent.children, e1);
+
+                    for(var i=index-2; i<=index+1; i++){
+                        delNodewithIndex(e1, i);
+                    }
+                }
+                function delNodewithIndex(e1, index){
+                    var children = e1.children;
+                    console.log(children);
+                    if(children.length > 0){
+                        e1.removeChild(children[index]);
+                    }
+                }
+               /* element3.addEventListener('click', function(this){
+                    /*var parent = this.parentNode;
+                    var index = Array.prototype.indexOf.call(parent.children, this);
+                    var e1 = parent.childNodes[index-2];
+                    var e2 = parent.childNodes[index-1];
+                    var e3 = parent.childNodes[index];
+                    var e4 = parent.childNodes[index+1];
+                    
+                    this.parentNode.removeChild(e1);
+                    this.parentNode.removeChild(e2);
+                    this.parentNode.removeChild(e3);
+                    this.parentNode.removeChild(e4);
+                };*/
+            };
+        </script>
+    </body>
+</html>
